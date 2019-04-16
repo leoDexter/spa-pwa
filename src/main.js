@@ -21,6 +21,8 @@ library.add(
   faCircle
 )
 
+// Fiz mudanças
+
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('font-awesome-layers', FontAwesomeLayers)
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText)
@@ -34,3 +36,7 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+// Fiz cagadas aqui no código....
+// blá blá blá e zas e zas...
