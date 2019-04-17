@@ -1,5 +1,5 @@
 <template>
-  <div style="displau:none" class="row message bg-light mb-2 rounded shadow">
+  <div style="display:none" class="row message bg-light mb-2 rounded shadow">
     <div class="col-2 p-1">
       <img :src="photoUrl" class="photo w-100 rounded">
     </div>
