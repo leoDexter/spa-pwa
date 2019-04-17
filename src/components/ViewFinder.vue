@@ -5,9 +5,9 @@
         <div class="modal-body p-1 text-center">
           <video id="player" autoplay class="w-100 rounded"></video>
           <button
-            id="shutter"
-            data-dismiss="modal"
+            @click="takePhoto"
             class="fa-md rounded-circle bg-white text-danger my-2"
+            data-dismiss="modal"
           >
             <font-awesome-icon icon="circle"></font-awesome-icon>
           </button>
@@ -17,8 +17,8 @@
   </div>
 </template>
 
-
 <script>
+import { constants } from "crypto";
 class Camera {
   constructor(video_node) {
     // Camera stream DOM node
@@ -32,13 +32,13 @@ class Camera {
         audio: false
       })
       .then(stream => {
-        this.videoNode.srcObject = this.stream = stream;
+        this.videoNode.srcObject = stream;
       });
   }
 
   switchOff() {
     this.videoNode.pause();
-    this.stream.getTracks()[0].stop();
+    this.videoNode.srcObject.getTracks()[0].stop();
   }
 
   takePhoto() {
@@ -62,22 +62,30 @@ class Camera {
 
 export default {
   name: "ViewFinder",
-  props: {
-    photo: Object
-  },
-  created: () => {},
-  mounted: () => {
-    var camera = new Camera(document.querySelector("#player"));
-    const cameraButton = document.querySelector("#shutter");
-    var viewFinder = document.querySelector("#viewFinder");
-
-    $(viewFinder).on("show.bs.modal", () => {
-      camera.switchOn();
-    });
+  data: () => {
+    return { camera: null };
   },
   methods: {
-    isOpen: () => {}
+    isCreated () {
+      var ctxt = this;
+      if (!ctxt.camera) {
+
+        $("#viewFinder").on("show.bs.modal", function() {
+          ctxt.camera = new Camera(document.querySelector("#player"));
+          ctxt.camera.switchOn();
+        });
+
+        $("#viewFinder").on("hidden.bs.modal", function() {
+          ctxt.camera.switchOff();
+        });
+      }
+    },
+    takePhoto () {
+      this.$emit("photo-took", this.camera.takePhoto());
+    }
+  },
+  mounted: function() {
+    this.isCreated();
   }
 };
 </script>
-

@@ -1,10 +1,8 @@
-// Teste de alteração
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
-import jquery from 'jquery'
 import './registerServiceWorker'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
@@ -13,7 +11,7 @@ import 'jquery/dist/jquery.min.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCamera, faCommentAlt, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
-window.$ = window.jQuery = require('jquery');
+window.$ = window.jQuery = require('jquery')
 
 library.add(
   faCamera,
@@ -36,7 +34,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-
-
-// Fiz cagadas aqui no código....
-// blá blá blá e zas e zas...
