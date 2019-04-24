@@ -1,54 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" class="row">
       <component :is="currentMenu" :right="side === 'right' ? true: false">
         <router-link to="/">
-          <font-awesome-icon icon="bell"/>
-          <span>Home</span>
+          <font-awesome-icon icon="home"/>
+          <span>Inicio</span>
         </router-link>
-        <router-link to="/about">
-          <font-awesome-icon icon="bell"/>
-          <span>about</span>
+        <router-link to="/calculadora">
+          <font-awesome-icon icon="calculator"/>
+          <span>Calculadora</span>
         </router-link>
-        <a href="#">
-          <font-awesome-icon icon="bell"/>
-          <span>Alerts</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-fw fa-envelope-o"></i>
-          <span>Messages</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-fw fa-comment-o"></i>
-          <span>Comments</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-fw fa-bar-chart-o"></i>
-          <span>Analytics</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-fw fa-newspaper-o"></i>
-          <span>Reading</span>
-        </a>
+        <router-link to="/suporte">
+          <font-awesome-icon icon="headset"/>
+          <span>Suporte</span>
+        </router-link>
+        <router-link to="/sobre">
+          <font-awesome-icon icon="id-card-alt"/>
+          <span>Sobre</span>
+        </router-link>
       </component>
     </div>
-    <router-view/>
+
+    <div class="row">
+      <div class="col">
+        <router-view/>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
+<script type="text/javascript" >
 import slide from "./components/MenuStyles/slide";
 import Menu from "./components/Menu";
 
 export default {
   data() {
-    return {      
+    return {
       side: "right",
       currentMenu: "slide"
     };
   },
   components: {
-    slide,    
+    slide,
     Menu
   },
   methods: {
@@ -60,6 +53,10 @@ export default {
 </script>
 
 <style>
+/* body {
+  
+} */
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -68,15 +65,23 @@ export default {
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  height: 40px;
+  position: relative;
+  background-color: #67717b;
+  margin-bottom: 15px;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ffc107;
+}
+
+.bm-item-list  svg,
+.bm-item-list  i {
+  font-size: 23px;
+  margin-right: 10px !important;
 }
 </style>
